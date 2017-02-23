@@ -1,10 +1,10 @@
 var scl = 10;
-var gridSize = 50;
+var gridSize = 60;
 var grid, successorGrid;
 var running = false;
 
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(gridSize * scl, gridSize * scl);
 
     // Create grid
     grid = [];

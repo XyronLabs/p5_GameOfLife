@@ -80,7 +80,7 @@ function getNumNeighbours(x, y) {
 }
 
 function mousePressed() {
-    if (!running && mouseX > 0 && mouseY > 0 && mouseX < width && mouseY < height) {
+    if (mouseX > 0 && mouseY > 0 && mouseX < width && mouseY < height) {
         var cx = floor(mouseX / scl);
         var cy = floor(mouseY / scl);
 

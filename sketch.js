@@ -71,6 +71,15 @@ function getNumNeighbours(x, y) {
     return neighbours;
 }
 
+function mousePressed() {
+    if (!running && mouseX > 0 && mouseY > 0 && mouseX < width && mouseY < height) {
+        var cx = floor(mouseX / scl);
+        var cy = floor(mouseY / scl);
+
+        grid[cx][cy] = !grid[cx][cy];
+    }
+}
+
 function keyPressed() {
     if(key == ' ') {
         running = !running;

@@ -11,7 +11,7 @@ function setup() {
     for (var i = 0; i < gridSize; i++) {
         grid[i] = [];
         for (var j = 0; j < gridSize; j++) {
-            grid[i][j] = random() < 0.1;
+            grid[i][j] = false;
         }
     }
 
@@ -81,8 +81,13 @@ function mousePressed() {
 }
 
 function keyPressed() {
-    if(key == ' ') {
+    if (key == ' ') {
         running = !running;
+    } else if (key == 'R') {
+        for (var i = 0; i < gridSize; i++) {
+            for (var j = 0; j < gridSize; j++) {
+                grid[i][j] = random() < 0.1;
+            }
+        }
     }
-    return 0;
 }

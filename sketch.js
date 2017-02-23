@@ -10,11 +10,11 @@ function setup() {
     for (var i = 0; i < gridSize; i++) {
         grid[i] = [];
         for (var j = 0; j < gridSize; j++) {
-            grid[i][j] = random() < 0.2;
+            grid[i][j] = random() < 0.1;
         }
     }
 
-    frameRate(10);
+    frameRate(20);
     //noLoop();
 }
 

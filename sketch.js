@@ -1,6 +1,7 @@
 var scl = 10;
 var gridSize = 50;
 var grid;
+var running = false;
 
 function setup() {
     createCanvas(500, 500);
@@ -15,7 +16,6 @@ function setup() {
     }
 
     frameRate(20);
-    //noLoop();
 }
 
 function draw() {
@@ -32,9 +32,11 @@ function draw() {
         }
     }
 
-    for (var i = 0; i < gridSize; i++) {
-        for (var j = 0; j < gridSize; j++) {
-            applyRules(i,j);
+    if (running) {
+        for (var i = 0; i < gridSize; i++) {
+            for (var j = 0; j < gridSize; j++) {
+                applyRules(i,j);
+            }
         }
     }
     
@@ -67,4 +69,11 @@ function getNumNeighbours(x, y) {
         }
     }
     return neighbours;
+}
+
+function keyPressed() {
+    if(key == ' ') {
+        running = !running;
+    }
+    return 0;
 }

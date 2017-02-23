@@ -1,6 +1,6 @@
 var scl = 10;
 var gridSize = 50;
-var grid;
+var grid, successorGrid;
 var running = false;
 
 function setup() {
@@ -8,10 +8,13 @@ function setup() {
 
     // Create grid
     grid = [];
+    successorGrid = [];
     for (var i = 0; i < gridSize; i++) {
         grid[i] = [];
+        successorGrid[i] = [];
         for (var j = 0; j < gridSize; j++) {
             grid[i][j] = false;
+            successorGrid[i][j] = false;
         }
     }
 
@@ -38,24 +41,29 @@ function draw() {
                 applyRules(i,j);
             }
         }
+        for (var i = 0; i < gridSize; i++) {
+            for (var j = 0; j < gridSize; j++) {
+                grid[i][j] = successorGrid[i][j];
+            }
+        }
     }
-    
+
 }
 
 function applyRules(x, y) {
     var n = getNumNeighbours(x,y);
 
     // 1. Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
-    if (grid[x][y] && n < 2) grid[x][y] = false;
+    if (grid[x][y] && n < 2) successorGrid[x][y] = false;
 
     // 2. Any live cell with two or three live neighbours lives on to the next generation.
-    if (grid[x][y] && (n == 2 || n == 3)) grid[x][y] = true;
+    if (grid[x][y] && (n == 2 || n == 3)) successorGrid[x][y] = true;
     
     // 3. Any live cell with more than three live neighbours dies, as if by overpopulation.
-    if (grid[x][y] && n > 3) grid[x][y] = false;
+    if (grid[x][y] && n > 3) successorGrid[x][y] = false;
     
     // 4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-    if (!grid[x][y] && n == 3) grid[x][y] = true;
+    if (!grid[x][y] && n == 3) successorGrid[x][y] = true;
 
 }
 
